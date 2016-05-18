@@ -4,12 +4,9 @@ var app=angular.module('app',['ngRoute','ngMaterial','ngMessages'])
 		  enabled: true,
 		  requireBase: false
 		});
-        $routeProvider.when('/', {
-            templateUrl: '/automata/automata/app/View/home.html',
+        $routeProvider.when('/automata', {
+            templateUrl: '/automata/app/View/home.html',
             controller: 'IndexController'
         }).otherwise({ redirectTo: '/' });
-
-
-
 
     });
