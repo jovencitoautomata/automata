@@ -5,8 +5,6 @@
 	<link rel="stylesheet" href="css/angular-material.min.css">
 </head>
 <body ng-view>
-
-<h1>hola mundo yair</h1>
 <!--librerias-->
 <script type="text/javascript" src="js/angular.min.js"></script>
 <script type="text/javascript" src="js/angular-route.min.js"></script>

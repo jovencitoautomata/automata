@@ -1,12 +1,10 @@
-var app=angular.module(function('app',['ngRoute','ngMaterial','ngMessages']){}).config(function ($routeProvider, $locationProvider) {
+var app=angular.module('app',['ngRoute','ngMaterial','ngMessages'])
+	.config(function ($routeProvider) {
 
         $routeProvider.when('/', {
-            templateUrl: '/app/view/home.html',
+            templateUrl: 'app/View/home.html',
             controller: 'IndexController'
         }).otherwise({ redirectTo: '/' });
 
-        $locationProvider.html5Mode({
-            enabled: true,
-            requireBase: false
-        });
+
     });

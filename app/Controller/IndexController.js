@@ -1,3 +1,4 @@
-app.controller('IndexContoller',function($scope){
-	
+app.controller('IndexController', function($scope) {
+    $scope.firstName = "John";
+    $scope.lastName = "Doe";
 });
