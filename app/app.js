@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 var app=angular.module(function('app',['ngRoute']){}).config(function ($routeProvider, $locationProvider) {
 
         $routeProvider.when('/', {
@@ -10,3 +11,6 @@ var app=angular.module(function('app',['ngRoute']){}).config(function ($routePro
             requireBase: false
         });
     });
+=======
+var app=angular.module(function('app',['ngRoute','ngMaterial','ngMessages']){});
+>>>>>>> origin/master
