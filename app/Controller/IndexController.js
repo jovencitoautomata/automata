@@ -1,3 +1,3 @@
-app.controller('IndexContoller',function($scope){
+app.controller('IndexController',function($scope){
 	
 });
