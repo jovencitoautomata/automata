@@ -23,7 +23,7 @@ angular.module('ngMdTables', ['ngMaterial']).directive('ngMdTable', function($fi
         /*showPagination: '=showPagination',*/
         isLoaded: '='
       },
-      templateUrl: 'automata/automata/app/View/table.html',
+      templateUrl: '/automata/app/View/table.html',
       link: function(scope, element) {
         scope.currentPage = 0;
 
