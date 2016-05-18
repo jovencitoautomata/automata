@@ -1,4 +1,4 @@
-var app=angular.module('app',['ngRoute','ngMaterial','ngMessages'])
+var app=angular.module('app',['ngRoute','ngMaterial','ngMessages','ngMdTables'])
 	.config(function ($routeProvider, $locationProvider) {
 		$locationProvider.html5Mode({
 		  enabled: true,
@@ -23,7 +23,7 @@ angular.module('ngMdTables', ['ngMaterial']).directive('ngMdTable', function($fi
         /*showPagination: '=showPagination',*/
         isLoaded: '='
       },
-      templateUrl: '/automata/app/View/table.html',
+      templateUrl: 'automata/app/View/table.html',
       link: function(scope, element) {
         scope.currentPage = 0;
 
