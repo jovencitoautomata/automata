@@ -1,4 +1,12 @@
-app.controller('IndexController', function($scope, VisDataSet) {
+app.controller('IndexController', function($scope, VisDataSet,$mdConstant) {
+    
+            // Use common key codes found in $mdConstant.KEY_CODE...
+        $scope.keys = [$mdConstant.KEY_CODE.ENTER, $mdConstant.KEY_CODE.COMMA];
+        $scope.tags = [];
+        // Any key code can be used to create a custom separator
+        var semicolon = 186;
+        $scope.customKeys = [$mdConstant.KEY_CODE.ENTER, $mdConstant.KEY_CODE.COMMA, semicolon];
+        //$scope.contacts = ['test@example.com'];
 // create an array with nodes
     var nodos = VisDataSet([
 	  {id: 1, label: "A"},

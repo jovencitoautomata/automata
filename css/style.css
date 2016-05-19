@@ -2,7 +2,19 @@
     margin: 0 auto;
 }
 
+.box-automata{
+    width: 80%;
+}
+
 /*style table angular*/
+main-fab {
+    position: absolute;
+    z-index: 20;
+    font-size: 50px;
+    margin-top: 25px;
+    right: 153px;
+    transform: scale(.88,.88);
+}
 
 .md-table {
   min-width: 100%;
@@ -10,7 +22,7 @@
 }
 .md-table tbody tr:hover,
 .md-table tbody tr:focus {
-  background-color: rgba(63, 81, 181, 0.2);
+  background-color: rgba(8, 30, 33, 0.08);
   color: rgba(0, 0, 0, 0.6);
 }
 .md-table tbody tr:nth-child(1):hover,
@@ -18,6 +30,11 @@
   cursor: default;
   background-color: rgba(63, 81, 181, 0);
 }
+
+.md-toolbar-tools{
+    color: white !important;
+}
+
 .md-table tbody tr:nth-child(even):hover,
 .md-table tbody tr:nth-child(even):focus {
   background-color: rgba(63, 81, 181, 0.05);
@@ -73,7 +90,7 @@
 }
 
 .toolbar-input {
-  margin-top: 15px;
+  margin-top: 45px;
 }
 .toolbar-input input {
   border-color: white;

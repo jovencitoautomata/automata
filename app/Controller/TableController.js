@@ -1,4 +1,4 @@
-app.controller('TableController', function($scope, $timeout) {
+app.controller('TableController', function($scope, $timeout,$mdConstant) {
   
     $timeout(function(){
       $scope.loaded = true;
@@ -69,5 +69,8 @@ app.controller('TableController', function($scope, $timeout) {
           "settings": {
             "sortable": true,
           }
-        }]
+        }];
+    
+
+  
 });
