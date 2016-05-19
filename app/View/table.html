@@ -6,14 +6,18 @@
             <span flex></span>  
             <md-input-container class="toolbar-input" ng-show="showSearch"> 
                <label>Search by...</label> 
-               <input ng-model="searchInput"> 
-            </md-input-container>
+               <input ng-model="searchInput">                 
+            </md-input-container>             
          </div>
       </md-toolbar>
       <table class="md-table" ng-show="filtered.length">
          <!--Columns section--> 
          <tr>
-            <th ng-init="reverse = false;" ng-repeat="column in columns" style="width:{{100/columns.length | floor}}%">
+            <th style="width:{{100/(columns.length+2) | floor}}%">
+               <span>
+               <a>Estados</a> </span>
+            </th>
+            <th ng-init="reverse = false;" ng-repeat="column in columns" style="width:{{100/(columns.length+2) | floor}}%">
                <span class="pointer" ng-class="{sortationActive: lastPredicate === column.identificator}" ng-if="column.settings.sortable">
                   <a ng-click="reverse=!reverse;order(column.identificator, reverse)">{{column.name}}</a>
                   <!--Sorting direction indicators--> 
@@ -28,6 +32,11 @@
                <span ng-if="!column.settings.sortable">
                <a>{{column.name}}</a> </span> <!--/Non sortable column-->
             </th>
+            <th style="width:{{100/(columns.length+2) | floor}}%">
+               <span>
+               <a>Aceptación</a> </span>
+            </th>
+
          </tr>
          <!--/Columns section--> <!--Data rows--> 
          <tr ng-repeat="row in filtered = (data | startFrom:currentPage*pageSize | filter: searchInput | limitTo:pageSize )">

@@ -1,26 +1,39 @@
-app.controller('IndexController', function($scope, VisDataSet,$mdConstant) {
+app.controller('IndexController', function($scope, VisDataSet,tableService) {
     
-            // Use common key codes found in $mdConstant.KEY_CODE...
-        $scope.keys = [$mdConstant.KEY_CODE.ENTER, $mdConstant.KEY_CODE.COMMA];
-        $scope.tags = [];
-        // Any key code can be used to create a custom separator
-        var semicolon = 186;
-        $scope.customKeys = [$mdConstant.KEY_CODE.ENTER, $mdConstant.KEY_CODE.COMMA, semicolon];
-        //$scope.contacts = ['test@example.com'];
+
+    $scope.simbolos = [];
+    $scope.estados = [];
+
+    $scope.newEstado = function(chip) {
+        return {
+            name: chip
+        };
+    };
+
+    $scope.newSimbolo = function(chip) {
+        return {
+            name: chip
+        };
+    };
+
+    tableService.setColumns($scope.simbolos);
+    tableService.setRegistros($scope.estados);
+
+    
 // create an array with nodes
     var nodos = VisDataSet([
 	  {id: 1, label: "A"},
 	  {id: 2, label: "B"},
 	  {id: 3, label: "C"},
 	  {id: 4, label: "D"},
-	  {id: 5, label: "E"},
+	  {id: 5, label: "E"}
 	]);
     // create an array with edges
     var aristas = VisDataSet([
 	  {from:1, to:3, label:"13"},
 	  {from:1, to:2, label:"20"},
 	  {from:2, to:4, label:"50"},
-	  {from:3, to:5, label:"7"},
+	  {from:3, to:5, label:"7"}
 	]);
 
 
@@ -67,4 +80,5 @@ app.controller('IndexController', function($scope, VisDataSet,$mdConstant) {
 
     // initialize your network!
    // var network = new vis.Network(container, data, options);
+
 });
