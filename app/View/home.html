@@ -20,29 +20,27 @@
 
             <div layout="row" layout-padding="" layout-wrap="" layout-fill="" style="padding-bottom: 32px;" class="whiteframedemoDirectiveAttributeUsage" >                
                 <div class="padded" md-whiteframe="6" flex-sm="45" flex-gt-sm="35" flex-gt-md="100" layout="" layout-align="center center">
-                    <div ng-controller="TableController" class="box-automata">
+                    <div class="box-automata">
                         <div class="main-fab" style="position: absolute;z-index: 20;transform: scale(.88,.88);right: 158px;/*margin-top: 25px;*/top: 585px;">
                 <md-button class="md-fab md-accent"   style="font-size: 25px;">+</md-button>
             </div>
-                        <div style="margin-bottom: 6px;">
-                            <md-chips class="custom-chips" ng-model="simbolos"
-                                      md-transform-chip="newSimbolo($chip)" placeholder="Símbolos de entrada">
-                                <md-chip-template>
-                                <span>
-                                  <strong>{{$chip.name}}</strong>
-                                </span>
-                                </md-chip-template>
-                            </md-chips>
-                            <md-chips class="custom-chips" ng-model="estados"
-                                      md-transform-chip="newEstado($chip)" placeholder="Estados de transición">
-                                <md-chip-template>
-                                <span>
-                                  <strong>{{$chip.name}}</strong>
-                                </span>
-                                </md-chip-template>
-                            </md-chips>
-                        </div>
-                        <ng-md-table table-name="Tabla de transiciones" data="data" columns="columns" show-search="false" page-size="10" is-loaded="loaded">
+                            <div style="margin-bottom: 6px;">
+                                <md-chips class="custom-chips" id="chipsimbolo" ng-keyUp="estan($event)" ng-model="simbolos" ng-init="count=0" md-transform-chip="newSimbolo($chip,count)" placeholder="Símbolos de entrada">
+                                    <md-chip-template>
+                                    <span>
+                                      <strong>{{$chip.name}}</strong>
+                                    </span>
+                                    </md-chip-template>
+                                </md-chips>
+                                <md-chips class="custom-chips" id="chipestados" ng-model="estados" md-transform-chip="newEstado($chip)" placeholder="Estados de transición">
+                                    <md-chip-template>
+                                    <span>
+                                      <strong>{{$chip.name}}</strong>
+                                    </span>
+                                    </md-chip-template>
+                                </md-chips>
+                            </div>
+                        <ng-md-table table-name="Tabla de transiciones" data="dataset" columns="columns" show-search="false" page-size="10" is-loaded="loaded">
                         </ng-md-table>
                         
                     </div>
