@@ -17,9 +17,10 @@ app.controller('IndexController', function($scope, VisDataSet,tableService) {
     };
 
     tableService.setColumns($scope.simbolos);
-    tableService.setRegistros($scope.estados);
+    tableService.setEstados($scope.estados);
 
-    
+    $scope.table=tableService.getTable();
+    $scope.esta=tableService.getEstados();
 // create an array with nodes
     var nodos = VisDataSet([
 	  {id: 1, label: "A"},

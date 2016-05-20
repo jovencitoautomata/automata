@@ -1,6 +1,7 @@
 app.controller('TableController', function($scope, $timeout,tableService) {
   var simbolos=tableService.getColumns();
-  var estados=tableService.getRegistros();
+  tableService.setTable($scope.data);
+  var data=tableService.getTable();
     $timeout(function(){
       $scope.loaded = true;
     },1500);
@@ -55,7 +56,7 @@ app.controller('TableController', function($scope, $timeout,tableService) {
         "surname": "Smith",
         "phone": "444-333-222"
       }];*/
-  $scope.data=[{}];/*
+/*
   $scope.columns = [{
           "name": "Your name",
           "identificator": "name",
@@ -72,9 +73,7 @@ app.controller('TableController', function($scope, $timeout,tableService) {
           }
         }];*/
     //simbolos.push({'name':'Aceptacion'});
+    $scope.data=data;
     $scope.columns=simbolos;
     //$scope.columns.push({'name':'Aceptacion'});
-
-
-  
 });
