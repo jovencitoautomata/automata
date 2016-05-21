@@ -1,12 +1,11 @@
 app.controller('IndexController', function($scope, VisDataSet, $timeout,tableService) {
-    
-
     $scope.simbolos = [];
     $scope.estados = [];
     $scope.table=[{}];
     $scope.info=[];
     $scope.onKeyPressResult="";
     $scope.count;
+    $scope.tra=[];
     //var table={columnas:[{}],registros:[{}]};
 
     
@@ -28,7 +27,7 @@ app.controller('IndexController', function($scope, VisDataSet, $timeout,tableSer
     $scope.newSimbolo = function(chip,count) {
     if($scope.onKeyPressResult>33 && count==1){
         $scope.count=0;
-        console.log("hola");
+        console.log($scope.tra);
         return {
             name: chip
         };        
@@ -182,8 +181,6 @@ app.controller('IndexController', function($scope, VisDataSet, $timeout,tableSer
           }
         }];*/
     //simbolos.push({'name':'Aceptacion'});
-    $scope.dataset=data;
-    $scope.columns=$scope.simbolos;
     //$scope.columns.push({'name':'Aceptacion'});
 
 

@@ -24,6 +24,7 @@ angular.module('ngMdTables', ['ngMaterial']).directive('ngMdTable', function($fi
       scope: {
         tableName: '@tableName',
         data: '=data',
+        trans:'=trans',
         columns: '=',
         pageSize: '=pageSize',
         showSearch: '=showSearch',
