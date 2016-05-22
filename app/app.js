@@ -94,6 +94,15 @@ angular.module('ngVis', [])
         'use strict';
         return function (data, options) {
             // Create the new dataSets
+           /*
+            var nodosGraf;
+            angular.forEach(data,function(value, key){
+                nodosGraf.push({id:value.name,label: value.name});
+            });
+
+            data.nodes=[{id:'a',label:'a'}];
+            data.edges=[{from:'a', to:'a', label:"13"}];*/
+
             return new vis.DataSet(data, options);
         };
     })

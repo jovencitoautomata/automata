@@ -20208,7 +20208,6 @@ function MdChipTransclude ($compile) {
     newScope.$chip = scope.$chip;
     newScope.$index = scope.$index;
     newScope.$mdChipsCtrl = ctrl;
-
     var newHtml = ctrl.$scope.$eval(attr.mdChipTransclude);
 
     element.html(newHtml);
@@ -20941,12 +20940,12 @@ MdChipsCtrl.prototype.hasFocus = function () {
 
   var CHIP_DEFAULT_TEMPLATE = '\
       <span>{{$chip}}</span>';
-
+//ng-click="$mdChipsCtrl.removeChipAndFocusInput($$replacedScope.$index)"\
   var CHIP_REMOVE_TEMPLATE = '\
       <button\
           class="md-chip-remove"\
           ng-if="!$mdChipsCtrl.readonly"\
-          ng-click="$mdChipsCtrl.removeChipAndFocusInput($$replacedScope.$index)"\
+          ng-click="$mdChipsCtrl.removeChipAndFocusInput($$replacedScope.$index);removeChip($index,$mdChipsCtrl,$chip.name)"\
           type="button"\
           aria-hidden="true"\
           tabindex="-1">\
