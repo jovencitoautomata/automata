@@ -41,20 +41,18 @@
          <!--/Columns section--> <!--Data rows--> 
          <tr ng-repeat="(keyRow, valRow) in filtered = (data | startFrom:currentPage*pageSize | filter: searchInput | limitTo:pageSize )">
             <td ng-repeat="(key, val) in valRow" ng-init="trans[keyRow]['estado']=val">{{trans[keyRow]['estado']}} </td>
-            <td ng-repeat="simbolo in columns" ng-init="trans[keyRow][simbolo.name]='error'">
+            <!--<td ng-repeat="simbolo in columns" ng-init="trans[keyRow][simbolo.name]='Ninguno'">-->
+            <td ng-repeat="simbolo in columns">
                <md-input-container class="md-block" flex-gt-sm>
                   <label>Estado</label>
                   <md-select ng-model="trans[keyRow][simbolo.name]">
-                     <md-option value="error">
-                     error
-                     </md-option>
                     <md-option ng-repeat="estado in data" value="{{estado.name}}">
                       {{estado.name}}
                     </md-option>
                   </md-select>
                </md-input-container> 
             </td>
-            <td ng-init="trans[keyRow]['aceptacion']='false'">
+            <td ng-init="trans[keyRow]['aceptacion']=false">
                <div flex-xs flex="50">
                   <md-checkbox ng-model="trans[keyRow]['aceptacion']" aria-label="aceptacion">
                   </md-checkbox>
