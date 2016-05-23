@@ -54,7 +54,11 @@ app.controller('IndexController', function($scope, VisDataSet, $timeout, $mdSide
    
         var nodosGraf=[];
         angular.forEach($scope.estados,function(value, key){
-            nodosGraf.push({id:value.name,label: value.name});
+            
+            if(value.aceptacion)
+                nodosGraf.push({id:value.name,label: value.name,color:{background:'rgb(105,240,174)'}});            
+            else
+                nodosGraf.push({id:value.name,label: value.name,color:{background:'rgba(240,252,86,1)'}});
         });
         nodos = VisDataSet(nodosGraf);
         // create an array with edges
