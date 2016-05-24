@@ -8,14 +8,41 @@
 <div flex="90" class="content-body">
     <md-content layout-padding>
     <!--nuevo input-->
-        <div layout-gt-sm="row" ng-if="tra.length != 0" class="layout-gt-sm-row">
-            <md-input-container class="md-block flex-gt-sm" flex-gt-sm="100">
-                <label for="input_139">Cadena</label>
-                <input ng-model="cadena" class="ng-pristine ng-untouched ng-valid md-input" id="input_139" aria-invalid="false">                
-            </md-input-container>
+        <div layout-gt-sm="row" "tra.length != 0" class="layout-gt-sm-row">
+          
+            <md-subheader class="md-no-sticky">Cadenas</md-subheader>
+            <md-list>
+                <md-list-item class="md-3-line"  ng-repeat="cadena in cadenas" ng-click="null">
+                    <div class="md-list-item-text" layout="column">
+                        <h4>{{ cadena.cadena }}</h4>
+                        <p>{{ cadena.aceptacion }}</p>
+                    </div>
+                    <ng-md-icon icon="delete" style="fill: purple" aria-label="Eliminar" class="md-secondary" ng-click="removeItem($index)">x</ng-md-icon>
+                </md-list-item>
+                <md-list-item>
+                    <div class="w3-container w3-light-grey w3-padding-hor-16">
+                        <div class="w3-row w3-margin-top">
+                          <div class="w3-col s10">
+                            <md-input-container class="md-block flex-gt-sm" flex-gt-sm="100">
+                                <label for="input_139">Cadena</label>
+                                <input ng-model="addMe" class="ng-pristine ng-untouched ng-valid md-input" aria-invalid="false">                
+                            </md-input-container>
+                           
+                          </div>
+                        </div>
+                        <p class="w3-padding-left w3-text-red">{{errortext}}</p>
+                      </div>
+                      <md-input-container class="md-block flex-gt-sm" flex-gt-sm="">
+                            <md-button class="md-raised" ng-click="addItem()">Agregar</md-button>
+                       </md-input-container>   
+
+                </md-list-item>
+
+            </md-list>
+                <!--
             <md-input-container class="md-block flex-gt-sm" flex-gt-sm="">
                 <md-button class="md-raised" ng-click="resultadoCadena(cadena)">Evaluar</md-button>
-            </md-input-container>
+            </md-input-container>-->
         </div>
         <div layout-gt-sm="row" ng-if="tra.length != 0" class="layout-gt-sm-row">
             <label ng-if="aceptacion" style="color: green;">Cadena aceptada</label>

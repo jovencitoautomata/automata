@@ -7,6 +7,7 @@ app.controller('IndexController', function($scope, VisDataSet, $timeout, $mdSide
     $scope.cadena="";
     $scope.aceptacion;
     $scope.tra=[];
+    $scope.cadenas=[];
     $scope.removeChip=function(index,holder,chip){
         
         if(holder.$element[0].id=="chipestados"){
@@ -23,6 +24,29 @@ app.controller('IndexController', function($scope, VisDataSet, $timeout, $mdSide
             }
         }
     };
+
+    $scope.addItem = function () {
+      var aceptacion;
+      var existe=false;
+        $scope.errortext = "";
+        if (!$scope.addMe) {return;}
+        angular.forEach($scope.cadenas,function(value,key){
+          if(value.cadena==$scope.addMe){
+            return existe=true;
+          }
+        });
+        if (!existe) {
+            aceptacion=resultadoCadena($scope.addMe);
+            $scope.cadenas.push({cadena:$scope.addMe,aceptacion:aceptacion});
+        } else {
+            $scope.errortext = "La cadena ya existe en la lista";
+        }
+    }
+
+    $scope.removeItem = function (x) {
+        $scope.errortext = "";    
+        $scope.cadenas.splice(x, 1);
+    }
 
 
     $scope.newEstado = function(chip) {
@@ -260,7 +284,7 @@ app.controller('IndexController', function($scope, VisDataSet, $timeout, $mdSide
     $scope.restar = function() { $scope.count = 0; };
 
     /*metodos mios*/
-    $scope.resultadoCadena=function(cadena){
+    function resultadoCadena(cadena){
         var letras=[];
         var inicial;
         //var estado;
@@ -272,7 +296,7 @@ app.controller('IndexController', function($scope, VisDataSet, $timeout, $mdSide
             for(var $j=0;$j<$scope.tra.length;$j++){
                 if($i==letras.length){
                     if($scope.tra[$j]['estado']==inicial){
-                        $scope.aceptacion=$scope.tra[$j]['aceptacion'];                        
+                        return $scope.tra[$j]['aceptacion'];                        
                         break;
                     }
                 }else{

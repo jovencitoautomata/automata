@@ -1,4 +1,4 @@
-var app=angular.module('app',['ngRoute','ngMaterial','ngMessages','ngMdTables','ngVis'])
+var app=angular.module('app',['ngRoute','ngMaterial','ngMessages','ngMdTables','ngVis','ngMdIcons'])
 	.config(function ($routeProvider, $locationProvider, $mdThemingProvider) {
 		$locationProvider.html5Mode({
 		  enabled: true,
