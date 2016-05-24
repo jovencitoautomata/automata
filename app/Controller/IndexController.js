@@ -80,8 +80,8 @@ app.controller('IndexController', function($scope, VisDataSet, $timeout, $mdSide
         var nodosGraf=[];
 
         angular.forEach($scope.estados,function(value, key){
-
-                nodos.update({id:value.name,label: value.name,color:{background:'rgba(240,252,86,1)'}});
+       
+            nodos.update({id:value.name,label: value.name});
         });
 
         var antiguos=nodos.getIds();
