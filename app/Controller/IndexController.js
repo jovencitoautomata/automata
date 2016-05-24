@@ -16,7 +16,6 @@ app.controller('IndexController', function($scope, VisDataSet, $timeout, $mdSide
                     $scope.tra.splice($i,1);
                     break;
                 }
-                console.log($scope.tra[$i]['estado'],chip);
             }
         }else{
             for (var name in $scope.tra) {
@@ -36,8 +35,9 @@ app.controller('IndexController', function($scope, VisDataSet, $timeout, $mdSide
           }
         });
         if (!existe) {
-            aceptacion=resultadoCadena($scope.addMe);
+            aceptacion=resultadoCadena($scope.addMe);            
             $scope.cadenas.push({cadena:$scope.addMe,aceptacion:aceptacion});
+            $scope.addMe=null;
         } else {
             $scope.errortext = "La cadena ya existe en la lista";
         }
@@ -75,26 +75,35 @@ app.controller('IndexController', function($scope, VisDataSet, $timeout, $mdSide
 
 
     $scope.$watch('estados',function(data){
-   
-        var nodosGraf=[];
-        angular.forEach($scope.estados,function(value, key){
-            
-            if(value.aceptacion)
-                nodosGraf.push({id:value.name,label: value.name,color:{background:'rgb(105,240,174)'}});            
-            else
-                nodosGraf.push({id:value.name,label: value.name,color:{background:'rgba(240,252,86,1)'}});
-        });
-        nodos = VisDataSet(nodosGraf);
-        // create an array with edges
 
-        $scope.data = {
-            nodes: nodos,
-            edges: aristas
-        };
+     
+        var nodosGraf=[];
+
+        angular.forEach($scope.estados,function(value, key){
+
+                nodos.update({id:value.name,label: value.name,color:{background:'rgba(240,252,86,1)'}});
+        });
+
+        var antiguos=nodos.getIds();
+        var auxiliar=[];
+          for(var i=0;i<antiguos.length;i++){
+            for(var j=0;j<$scope.estados.length;j++){
+              
+                    if(antiguos[i]==$scope.estados[j].name){
+                      break;
+                    }
+                    if(j==$scope.estados.length-1){
+                      auxiliar.push({id:antiguos[i]});
+                    }
+                 }
+              }
+        nodos.remove(auxiliar);
+       
     }, true);
 
     $scope.$watch('tra',function(data){
         var aris=[];
+        var transiciones=[];
         angular.forEach($scope.tra,function(value,key){
            
             if(value.aceptacion)
@@ -105,18 +114,39 @@ app.controller('IndexController', function($scope, VisDataSet, $timeout, $mdSide
             
 
             angular.forEach(value,function(val,ke){
-                if(ke!='estado' && ke!='aceptacion')
-                aris.push({from : value.estado, to : val, label : ke});
+                if(ke!='estado' && ke!='aceptacion'){
+                  transiciones.push(value.estado+ke+"");
+                aris.push({id:value.estado+ke+"",from : value.estado, to : val, label : ke});
+              }
             });
         });
+        aristas.update(aris);
+
+        var antiguos=aristas.getIds();
+        var auxiliar=[];
+        for(var i=0;i<antiguos.length;i++){
+            for(var j=0;j<transiciones.length;j++){
+                if(antiguos[i]==transiciones[j]){
+                  break;
+                }
+                if(j==transiciones.length-1){
+                  auxiliar.push({id:antiguos[i]});
+                }
+            }
+        }
         
-        aristas=VisDataSet(aris);
-        $scope.data = {
+        aristas.remove(auxiliar);
+       /* $scope.data = {
+            nodes: nodos,
+            edges: aristas
+        };*/
+        
+    },true);
+
+    $scope.data = {
             nodes: nodos,
             edges: aristas
         };
-        
-    },true);
 
 
     // create a network
@@ -309,5 +339,9 @@ app.controller('IndexController', function($scope, VisDataSet, $timeout, $mdSide
             }
         }
 
+    }
+
+    $scope.removeNCadenas=function(){
+        $scope.cadenas=[];
     }
 });
