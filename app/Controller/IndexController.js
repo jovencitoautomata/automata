@@ -8,7 +8,7 @@ app.controller('IndexController', function($scope, VisDataSet, $timeout, $mdSide
     $scope.aceptacion;
     $scope.tra=[];
     $scope.cadenas=[];
-    $scope.ini=true;
+    $scope.ini="a";
     $scope.removeChip=function(index,holder,chip){
         
         if(holder.$element[0].id=="chipestados"){
@@ -74,7 +74,9 @@ app.controller('IndexController', function($scope, VisDataSet, $timeout, $mdSide
     var nodos = VisDataSet([]);
     var aristas = VisDataSet([]);
 
-
+    $scope.$watch('ini',function(data){
+      console.log($scope.ini);
+    },true);
     $scope.$watch('estados',function(data){
 
      
@@ -107,9 +109,9 @@ app.controller('IndexController', function($scope, VisDataSet, $timeout, $mdSide
     $scope.$watch('tra',function(data){
         var aris=[];
         var transiciones=[];
+        var counttrue;
         angular.forEach($scope.tra,function(value,key){
-            if(value.inicio)
-              $scope.ini=false;
+
             if(value.aceptacion)
                 nodos.update([{id:value.estado,color:{background:'rgb(105,240,174)'}}]);
             
@@ -124,6 +126,7 @@ app.controller('IndexController', function($scope, VisDataSet, $timeout, $mdSide
               }
             });
         });
+
         aristas.update(aris);
 
         var antiguos=aristas.getIds();
@@ -137,7 +140,7 @@ app.controller('IndexController', function($scope, VisDataSet, $timeout, $mdSide
                   auxiliar.push({id:antiguos[i]});
                 }
             }
-            if($scope.transiciones.length==0)
+            if(transiciones.length==0)
               auxiliar.push({id:antiguos[i]}); 
         }
         

@@ -43,33 +43,32 @@
 
          </tr>
          <!--/Columns section--> <!--Data rows--> 
-         <tr ng-repeat="(keyRow, valRow) in filtered = (data)">
-            <td ng-init="trans[keyRow]['inicio']=ini">
-               <div flex-xs flex="50">
-                  <md-checkbox ng-model="trans[keyRow]['inicio']" aria-label="aceptacion">
-                  </md-checkbox>
-               </div>
-            </td>
-            <td ng-repeat="(key, val) in valRow" ng-init="trans[keyRow]['estado']=val">{{trans[keyRow]['estado']}} </td>
-            <!--<td ng-repeat="simbolo in columns" ng-init="trans[keyRow][simbolo.name]='Ninguno'">-->
-            <td ng-repeat="simbolo in columns">
-               <md-input-container class="md-block" flex-gt-sm>
-                  <label>Estado</label>
-                  <md-select ng-model="trans[keyRow][simbolo.name]">
-                    <md-option ng-repeat="estado in data" value="{{estado.name}}">
-                      {{estado.name}}
-                    </md-option>
-                  </md-select>
-               </md-input-container> 
-            </td>
-            <td ng-init="trans[keyRow]['aceptacion']=false">
-               <div flex-xs flex="50">
-                  <md-checkbox ng-model="trans[keyRow]['aceptacion']" aria-label="aceptacion">
-                  </md-checkbox>
-               </div>
-            </td>
- 
-         </tr>
+
+  
+            <tr ng-repeat="(keyRow, valRow) in filtered = (data)">
+
+               <td ng-repeat="(key, val) in valRow"><input type="radio" name="inicio" ng-model="ini" class="md-primary" value="{{trans[keyRow]['estado']}}"/></td>
+
+               <td ng-repeat="(key, val) in valRow" ng-init="trans[keyRow]['estado']=val">{{trans[keyRow]['estado']}} </td>
+               <!--<td ng-repeat="simbolo in columns" ng-init="trans[keyRow][simbolo.name]='Ninguno'">-->
+               <td ng-repeat="simbolo in columns">
+                  <md-input-container class="md-block" flex-gt-sm>
+                     <label>Estado</label>
+                     <md-select ng-model="trans[keyRow][simbolo.name]">
+                       <md-option ng-repeat="estado in data" value="{{estado.name}}">
+                         {{estado.name}}
+                       </md-option>
+                     </md-select>
+                  </md-input-container> 
+               </td>
+               <td ng-init="trans[keyRow]['aceptacion']=false">
+                  <div flex-xs flex="50">
+                     <md-checkbox ng-model="trans[keyRow]['aceptacion']" aria-label="aceptacion">
+                     </md-checkbox>
+                  </div>
+               </td>
+    
+            </tr>
          <!--/Data rows--> 
       </table>
       <div class="no-results" ng-show="(filtered.length === 0 && searchInput)">
