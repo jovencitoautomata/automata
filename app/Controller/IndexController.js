@@ -8,6 +8,7 @@ app.controller('IndexController', function($scope, VisDataSet, $timeout, $mdSide
     $scope.aceptacion;
     $scope.tra=[];
     $scope.cadenas=[];
+    $scope.ini=true;
     $scope.removeChip=function(index,holder,chip){
         
         if(holder.$element[0].id=="chipestados"){
@@ -107,7 +108,8 @@ app.controller('IndexController', function($scope, VisDataSet, $timeout, $mdSide
         var aris=[];
         var transiciones=[];
         angular.forEach($scope.tra,function(value,key){
-           
+            //if(value.inicio)
+              //$scope.ini=false;
             if(value.aceptacion)
                 nodos.update([{id:value.estado,color:{background:'rgb(105,240,174)'}}]);
             
