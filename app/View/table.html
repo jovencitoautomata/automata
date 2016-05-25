@@ -43,10 +43,10 @@
 
          </tr>
          <!--/Columns section--> <!--Data rows--> 
-
+            
   
             <tr ng-repeat="(keyRow, valRow) in filtered = (data)">
-               <td ng-repeat="(key, val) in valRow"><md-radio-button value="{{trans[keyRow]['estado']}}" class="md-primary">Apple</md-radio-button></td>
+               <td ng-repeat="(key, val) in valRow"><input type="radio" ng-model="ini['name']" class="md-primary" value="{{trans[keyRow]['estado']}}"/></td>
 
                <td ng-repeat="(key, val) in valRow" ng-init="trans[keyRow]['estado']=val">{{trans[keyRow]['estado']}} </td>
                <!--<td ng-repeat="simbolo in columns" ng-init="trans[keyRow][simbolo.name]='Ninguno'">-->
