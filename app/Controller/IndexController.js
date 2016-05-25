@@ -8,7 +8,10 @@ app.controller('IndexController', function($scope, VisDataSet, $timeout, $mdSide
     $scope.aceptacion;
     $scope.tra=[];
     $scope.cadenas=[];
-    $scope.ini="a";
+    $scope.ini=[];
+    $scope.toggleSidenav = function(menuId) {
+    $mdSidenav(menuId).toggle();
+  };
     $scope.removeChip=function(index,holder,chip){
         
         if(holder.$element[0].id=="chipestados"){
@@ -77,6 +80,8 @@ app.controller('IndexController', function($scope, VisDataSet, $timeout, $mdSide
     $scope.$watch('ini',function(data){
       console.log($scope.ini);
     },true);
+
+
     $scope.$watch('estados',function(data){
 
      
