@@ -5,10 +5,63 @@
         </div>
     </md-toolbar>
 </div>
-<div flex="90" class="content-body">    <!--Mas nuevo-->
-    
-    <!--fin mas nuevo-->
+<div flex="90" class="content-body"> 
     <md-content layout-padding>
+   <!--Mas nuevo-->
+        <div layout="column" >
+                <md-toolbar layout="row">
+                    <div class="md-toolbar-tools">
+                        <button ng-click="toggleSidenav('left')" hide-gt-sm class="menuBtn" aria-label="Toggle Menu">
+                        </button>
+                        <h1 layout-align-gt-sm="center">
+                            Hello World
+                        </h1>
+                    </div>
+                </md-toolbar>
+          
+            <div layout="row" flex class="change-my-css">
+                <md-sidenav flex="30"layout="column" class="md-sidenav-left md-whiteframe-z2" md-component-id="left" md-is-locked-open="$mdMedia('gt-sm')">
+                    <div>Side Navigation</div>
+
+                    <md-list>
+                        <md-list-item ng-repeat="cadena in cadenas" ng-click="null">
+                            <div class="md-list-item-text">
+                                <div layout="row">
+                                    <h4>{{ cadena.cadena }}</h4>                        
+                                </div>
+                                <p ng-if="cadena.aceptacion" style="color: green;margin-top: -17px;" class="ng-scope">Cadena aceptada</p>
+                                <p ng-if="!cadena.aceptacion" style="color: red;margin-top: -17px;" class="ng-scope">Cadena rechazada</p>
+                            </div>
+                            <ng-md-icon icon="delete" style="fill: purple" aria-label="Eliminar" class="md-secondary" ng-click="removeItem($index)">x</ng-md-icon>
+                        </md-list-item>
+                    </md-list>
+                    <md-divider></md-divider>
+                    <div layout="row" layout-xs="column">
+                        <md-list-item>
+                            <div class="md-list-item-text">
+                                <div layout="row">
+                                    <md-input-container class="md-block flex-gt-sm" flex-gt-sm="100">
+                                        <label for="input_139">Cadena</label>
+                                        <input ng-model="addMe" class="ng-pristine ng-untouched ng-valid md-input" aria-invalid="false"> 
+                                    </md-input-container>      
+                                    <md-input-container class="md-block flex-gt-sm" flex-gt-sm="100">
+                                        <md-button class="md-raised" ng-click="addItem()">Agregar</md-button>  
+                                    </md-input-container>   
+                                    <ng-md-icon icon="delete" style="fill: purple" aria-label="Eliminar" class="md-secondary" title="Eliminar todas las cadenas" ng-click="removeNCadenas()">x</ng-md-icon>                  
+                                </div>                                
+                            </div>
+                        </md-list-item>
+                        
+                    </div> 
+                </md-sidenav>
+          
+                <md-content layout="column" id="content" flex="70" class="md-padding">
+                      
+                </md-content>
+            </div>
+        </div>
+        <!--fin mas nuevo-->
+    
         <div layout="row" layout-xs="column">
             <div flex="30">
             <div layout="row" style="height: 550px;" class="ng-scope layout-row">
@@ -97,7 +150,7 @@
                                     </md-chip-template>
                                 </md-chips>
                             </div>
-                        <ng-md-table table-name="Tabla de transiciones"  data="estados" trans="tra" columns="simbolos" show-search="false" page-size="10" is-loaded="loaded">
+                        <ng-md-table table-name="Tabla de transiciones" ini="ini" data="estados" trans="tra" columns="simbolos" show-search="false" page-size="10" is-loaded="loaded">
                         </ng-md-table>
 
                     </div>
