@@ -8,21 +8,26 @@
 <div flex="90" class="content-body"> 
     <md-content layout-padding>
    <!--Mas nuevo-->
-        <div layout="column" >
-                <md-toolbar layout="row">
-                    <div class="md-toolbar-tools">
-                        <button ng-click="toggleSidenav('left')" hide-gt-sm class="menuBtn" aria-label="Toggle Menu">
-                        </button>
-                        <h1 layout-align-gt-sm="center">
-                            Hello World
-                        </h1>
+        <div layout="column"  ng-show="tra.length != 0"> 
+        <md-toolbar layout="row">
+                    <div class="md-toolbar-tools">    
+                    <div>                
+                    <md-button  class="md-icon-button md-accent" hide-gt-sm class="menuBtn" aria-label="Toggle Menu" ng-click="toggleSidenav('left')"><ng-md-icon icon="view_headline" style="fill: white;" aria-label="Eliminar" class="md-secondary"></ng-md-icon> </md-button>                        
                     </div>
+                    <h4 style="text-align: center;color:white;">
+                            Cadenas de aceptación y autómata.
+                        </h4>
+                    </div>
+                    
                 </md-toolbar>
-          
             <div layout="row" flex class="change-my-css">
-                <md-sidenav flex="30"layout="column" class="md-sidenav-left md-whiteframe-z2" md-component-id="left" md-is-locked-open="$mdMedia('gt-sm')">
-                    <div>Side Navigation</div>
-
+                <md-sidenav flex="30"layout="column" style="height: 500px;overflow-y:auto"  class="md-sidenav-left md-whiteframe-z2" md-component-id="left" md-is-locked-open="$mdMedia('gt-sm')">
+                    <div>
+                        <h4 layout-align-gt-sm="center" style="text-align: center;">
+                            Cadenas
+                        </h4>
+                    </div>
+                    <div style="overflow-y:auto">
                     <md-list>
                         <md-list-item ng-repeat="cadena in cadenas" ng-click="null">
                             <div class="md-list-item-text">
@@ -35,98 +40,39 @@
                             <ng-md-icon icon="delete" style="fill: purple" aria-label="Eliminar" class="md-secondary" ng-click="removeItem($index)">x</ng-md-icon>
                         </md-list-item>
                     </md-list>
+                    </div>
                     <md-divider></md-divider>
-                    <div layout="row" layout-xs="column">
-                        <md-list-item>
-                            <div class="md-list-item-text">
-                                <div layout="row">
-                                    <md-input-container class="md-block flex-gt-sm" flex-gt-sm="100">
+                        <div class="md-list-item-text">
+                            <div layout="row">
+                                <div layout="column">
+                                    <md-input-container class="md-block flex-gt-sm" flex-gt-sm="100" >
                                         <label for="input_139">Cadena</label>
                                         <input ng-model="addMe" class="ng-pristine ng-untouched ng-valid md-input" aria-invalid="false"> 
-                                    </md-input-container>      
+                                    </md-input-container> 
+                                </div>
+                                <div layout="column">
                                     <md-input-container class="md-block flex-gt-sm" flex-gt-sm="100">
-                                        <md-button class="md-raised" ng-click="addItem()">Agregar</md-button>  
-                                    </md-input-container>   
-                                    <ng-md-icon icon="delete" style="fill: purple" aria-label="Eliminar" class="md-secondary" title="Eliminar todas las cadenas" ng-click="removeNCadenas()">x</ng-md-icon>                  
-                                </div>                                
-                            </div>
-                        </md-list-item>
-                        
-                    </div> 
+                                    <md-button class="md-raised" ng-click="addItem()">Agregar</md-button>  
+                                    </md-input-container>
+                                </div> 
+                                <div layout="column" class="layout-column">
+                                    <md-input-container class="md-block flex-gt-sm flex-gt-sm-100" flex-gt-sm="100">  
+                                    <md-button  class="md-icon-button md-accent"><ng-md-icon icon="delete" style="fill: purple" aria-label="Eliminar" class="md-secondary" title="Eliminar todas las cadenas" ng-click="removeNCadenas()">x</ng-md-icon> </md-button>     
+                                              
+                                    </md-input-container>
+                                </div>   
+                            </div>    
+                        </div>
                 </md-sidenav>
           
-                <md-content layout="column" id="content" flex="70" class="md-padding">
-                      
+                <md-content layout="column" id="content" flex="70"  style="height: 500px" class="md-padding md-whiteframe-z2">
+                    <div layout="row" style="height: 100%;" class="ng-scope layout-row">                        
+                        <vis-network data="data" flex="100" layout-fill options="options" style="height: 500px" events="events"></vis-network>
+                    </div>
                 </md-content>
             </div>
         </div>
-        <!--fin mas nuevo-->
-    
-        <div layout="row" layout-xs="column">
-            <div flex="30">
-            <div layout="row" style="height: 550px;" class="ng-scope layout-row">
-                
-                <div layout="row" layout-padding="" layout-wrap="" layout-fill="" style="padding-bottom: 32px;" class="whiteframedemoDirectiveAttributeUsage" >
-                    <div class="padded" md-whiteframe="6" flex-sm="100" flex-gt-sm="100" flex-gt-md="100" layout="" layout-align="center center">                     
-                        <div layout-gt-sm="row" "tra.length != 0" class="layout-gt-sm-row">          
-                            
-                            <md-list flex="100" >  
-                                <md-subheader class="md-no-sticky">Cadenas</md-subheader>
-                                <div style="height: 350px; width: 400px; overflow-y:scroll">                              
-                                    <md-list-item class="md-3-line"  ng-repeat="cadena in cadenas" ng-click="null">
-                                        <div class="md-list-item-text" layout="column">
-                                            <h4>{{ cadena.cadena }}</h4>
-                                            <label ng-if="cadena.aceptacion" style="color: green;">Cadena aceptada</label>
-                                            <label ng-if="!cadena.aceptacion" style="color: red;">Cadena rechazada</label>                                            
-                                        </div>
-                                        <ng-md-icon icon="delete" style="fill: purple" aria-label="Eliminar" class="md-secondary" ng-click="removeItem($index)">x</ng-md-icon>
-                                    </md-list-item>
-                                </div>                      
-                                <md-list-item>
-                                    <div class="w3-container w3-light-grey w3-padding-hor-16">
-                                        <div class="w3-row w3-margin-top">
-                                            <div class="w3-col s12">
-                                                <div layout="row" layout-xs="column">
-                                                    <div flex="85">
-                                                        <md-input-container class="md-block flex-gt-sm" flex-gt-sm="100">
-                                                            <label for="input_139">Cadena</label>
-                                                            <input ng-model="addMe" class="ng-pristine ng-untouched ng-valid md-input" aria-invalid="false"> 
-                                                        </md-input-container> 
-                                                    </div>
-                                                    <div flex="15">
-                                                        <md-input-container class="md-block flex-gt-sm" flex-gt-sm="100">
-                                                        <md-button class="md-raised" ng-click="addItem()">Agregar</md-button>  
-                                                        </md-input-container>   
-                                                    </div>
-                                                    <div flex="5">
-                                                        <ng-md-icon icon="delete" style="fill: purple" aria-label="Eliminar" class="md-secondary" title="Eliminar todas las cadenas" ng-click="removeNCadenas()">x</ng-md-icon>                                                        
-                                                    </div>
-                                                </div>                       
-                                            </div>
-                                        </div>
-                                    </div>  
-                                </md-list-item>
-                            </md-list>
-                <!--
-            <md-input-container class="md-block flex-gt-sm" flex-gt-sm="">
-                <md-button class="md-raised" ng-click="resultadoCadena(cadena)">Evaluar</md-button>
-            </md-input-container>-->
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div flex="70">
-            <div layout="row" style="height: 550px;" class="ng-scope layout-row">
-                <div layout="row" layout-padding="" layout-wrap="" layout-fill="" style="padding-bottom: 32px;" class="whiteframedemoDirectiveAttributeUsage" >
-                    <div class="padded" md-whiteframe="6" flex-sm="100" flex-gt-sm="100" flex-gt-md="100" layout="" layout-align="center center">
-                        <vis-network data="data" flex="100" layout-fill options="options" style="height: 490px !important;" events="events"></vis-network>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div> 
-    <!--fin de fin nuevo-->    
+        <!--fin mas nuevo-->      
         
     <md-divider></md-divider>
         <div layout="row" class="ng-scope layout-row">
