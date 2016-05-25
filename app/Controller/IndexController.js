@@ -85,16 +85,36 @@ app.controller('IndexController', function($scope, VisDataSet, $timeout, $mdSide
     var nodos = VisDataSet([]);
     var aristas = VisDataSet([]);
 
+    $scope.$watch('ini.name', function(data) {
+        var otros=nodos.getIds();
+        angular.forEach(otros, function(value, key){
+            nodos.update({
+                id: value,
+                shape:'circle'
+            });
 
+        });
+        nodos.update({
+            id: $scope.ini.name,
+            shape:'box'
+        });
+    },true);
 
 
     $scope.$watch('estados', function(data) {
         var nodosGraf = [];
         angular.forEach($scope.estados, function(value, key) {
-            nodos.update({
-                id: value.name,
-                label: value.name
-            });
+            if(value.name==$scope.ini.name)
+                nodos.update({
+                    id: value.name,
+                    label: value.name,
+                    shape:'box'
+                });
+            else
+                 nodos.update({
+                    id: value.name,
+                    label: value.name
+                });
         });
 
         var antiguos = nodos.getIds();
@@ -179,10 +199,6 @@ app.controller('IndexController', function($scope, VisDataSet, $timeout, $mdSide
         }
 
         aristas.remove(auxiliar);
-        /* $scope.data = {
-             nodes: nodos,
-             edges: aristas
-         };*/
 
     }, true);
 
@@ -314,7 +330,7 @@ app.controller('IndexController', function($scope, VisDataSet, $timeout, $mdSide
             contextmenu: $scope.rightClick
         };
         */
-        
+
     //slide de insertar nodos
 
     $scope.agregarNodo = function() {
