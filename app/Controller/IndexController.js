@@ -96,7 +96,9 @@ app.controller('IndexController', function($scope, VisDataSet, $timeout, $mdSide
                       auxiliar.push({id:antiguos[i]});
                     }
                  }
-              }
+             if($scope.estados.length==0)
+              auxiliar.push({id:antiguos[i]});   
+          }
         nodos.remove(auxiliar);
        
     }, true);
@@ -133,6 +135,8 @@ app.controller('IndexController', function($scope, VisDataSet, $timeout, $mdSide
                   auxiliar.push({id:antiguos[i]});
                 }
             }
+            if($scope.transiciones.length==0)
+              auxiliar.push({id:antiguos[i]}); 
         }
         
         aristas.remove(auxiliar);
