@@ -1,81 +1,83 @@
 <div>
-   <section class="loading-animation" ng-show="isLoaded">
-      <md-toolbar class="table-toolbar md-primary">
-         <div class="md-toolbar-tools">
-            <h3>{{tableName}}</h3>
-            <span flex></span>  
-            <md-input-container class="toolbar-input" ng-show="showSearch"> 
-               <label>Search by...</label> 
-               <input ng-model="searchInput">                 
-            </md-input-container>             
-         </div>
-      </md-toolbar>
-      <table class="md-table" ng-show="filtered.length">
-         <!--Columns section--> 
-         <tr>
-           <th style="width:{{100/(columns.length+3) | floor}}%">
-               <span>
-               <a>Inicio</a> </span>
-            </th>
-            <th style="width:{{100/(columns.length+3) | floor}}%">
-               <span>
+    <section class="loading-animation" ng-show="isLoaded">
+        <md-toolbar class="table-toolbar md-primary">
+            <div class="md-toolbar-tools">
+                <h3>{{tableName}}</h3>
+                <span flex></span>
+                <md-input-container class="toolbar-input" ng-show="showSearch">
+                    <label>Search by...</label>
+                    <input ng-model="searchInput">
+                </md-input-container>
+            </div>
+        </md-toolbar>
+        <table class="md-table" ng-show="filtered.length">
+            <!--Columns section-->
+            <tr>
+                <th style="width:{{100/(columns.length+2) | floor}}%">
+                    <span>
                <a>Estados</a> </span>
-            </th>
-            <th ng-init="reverse = false;" ng-repeat="column in columns" style="width:{{100/(columns.length+3) | floor}}%">
-               <span class="pointer" ng-class="{sortationActive: lastPredicate === column.identificator}" ng-if="column.settings.sortable">
+                </th>
+                <th ng-init="reverse = false;" ng-repeat="column in columns" style="width:{{100/(columns.length+3) | floor}}%">
+                    <span class="pointer" ng-class="{sortationActive: lastPredicate === column.identificator}" ng-if="column.settings.sortable">
                   <a ng-click="reverse=!reverse;order(column.identificator, reverse)">{{column.name}}</a>
                   <!--Sorting direction indicators--> 
                   <span> <span ng-if="showArrowUp(column.identificator, reverse)">&#x25B2;</span>
-                  <span ng-if="showArrowDown(column.identificator, reverse)">&#x25BC;</span> </span> 
-                  <!--/Sorting direction indicators--> <!--Show that sorting is possible-->
-                  <span class="can-be-sorted" ng-if="(lastPredicate !== column.identificator)"> 
+                    <span ng-if="showArrowDown(column.identificator, reverse)">&#x25BC;</span> </span>
+                    <!--/Sorting direction indicators-->
+                    <!--Show that sorting is possible-->
+                    <span class="can-be-sorted" ng-if="(lastPredicate !== column.identificator)"> 
                   <span>&#x25B2;</span> <span>&#x25BC;</span> </span>
-                  <!--/Show that sorting is possible--> 
-               </span>
-               <!--Non sortable column-->
-               <span ng-if="!column.settings.sortable">
-               <a>{{column.name}}</a> </span> <!--/Non sortable column-->
-            </th>
-            <th style="width:{{100/(columns.length+3) | floor}}%">
-               <span>
+                    <!--/Show that sorting is possible-->
+                    </span>
+                    <!--Non sortable column-->
+                    <span ng-if="!column.settings.sortable">
+               <a>{{column.name}}</a> </span>
+                    <!--/Non sortable column-->
+                </th>
+                <th style="width:{{100/(columns.length+2) | floor}}%">
+                    <span>
                <a>Aceptación</a> </span>
-            </th>
+                </th>
 
-         </tr>
-         <!--/Columns section--> <!--Data rows--> 
-
-  
-            <tr ng-repeat="(keyRow, valRow) in filtered = (data)">
-               <td ng-repeat="(key, val) in valRow"><md-radio-group ng-model="ini['name']"><md-radio-button value="{{trans[keyRow]['estado']}}" class="md-primary"> </md-radio-button></md-radio-group></td>
-
-               <td ng-repeat="(key, val) in valRow" ng-init="trans[keyRow]['estado']=val">{{trans[keyRow]['estado']}} </td>
-               <!--<td ng-repeat="simbolo in columns" ng-init="trans[keyRow][simbolo.name]='Ninguno'">-->
-               <td ng-repeat="simbolo in columns">
-                  <md-input-container class="md-block" flex-gt-sm>
-                     <label>Estado</label>
-                     <md-select ng-model="trans[keyRow][simbolo.name]">
-                       <md-option ng-repeat="estado in data" value="{{estado.name}}">
-                         {{estado.name}}
-                       </md-option>
-                     </md-select>
-                  </md-input-container> 
-               </td>
-               <td ng-init="trans[keyRow]['aceptacion']=false">
-                  <div flex-xs flex="50">
-                     <md-checkbox ng-model="trans[keyRow]['aceptacion']" aria-label="aceptacion">
-                     </md-checkbox>
-                  </div>
-               </td>
-    
             </tr>
-         <!--/Data rows--> 
-      </table>
-      <div class="no-results" ng-show="(filtered.length === 0 && searchInput)">
-         <h1>En este momento, no tenemos los datos coincidan con su consulta.</h1>
-      </div>
-      <div class="no-results" ng-if="(filtered.length === 0 && !searchInput)">
-         <h1>¡No hay datos!</h1>
-      </div>
+            <!--/Columns section-->
+            <!--Data rows-->
 
-   </section>
+
+            <tr ng-repeat="(keyRow, valRow) in filtered = (data)">
+
+                <td ng-repeat="(key, val) in valRow" ng-init="trans[keyRow]['estado']=val">
+                  <md-radio-group ng-model="ini['name']">
+                        <md-radio-button ng-value="trans[keyRow]['estado']" class="md-primary">{{trans[keyRow]['estado']}}</md-radio-button>
+                    </md-radio-group>
+                 </td>
+                <!--<td ng-repeat="simbolo in columns" ng-init="trans[keyRow][simbolo.name]='Ninguno'">-->
+                <td ng-repeat="simbolo in columns">
+                    <md-input-container class="md-block" flex-gt-sm>
+                        <label>Estado</label>
+                        <md-select ng-model="trans[keyRow][simbolo.name]">
+                            <md-option ng-repeat="estado in data" value="{{estado.name}}">
+                                {{estado.name}}
+                            </md-option>
+                        </md-select>
+                    </md-input-container>
+                </td>
+                <td ng-init="trans[keyRow]['aceptacion']=false">
+                    <div flex-xs flex="50">
+                        <md-checkbox ng-model="trans[keyRow]['aceptacion']" aria-label="aceptacion">
+                        </md-checkbox>
+                    </div>
+                </td>
+
+            </tr>
+            <!--/Data rows-->
+        </table>
+        <div class="no-results" ng-show="(filtered.length === 0 && searchInput)">
+            <h1>En este momento, no tenemos los datos coincidan con su consulta.</h1>
+        </div>
+        <div class="no-results" ng-if="(filtered.length === 0 && !searchInput)">
+            <h1>¡No hay datos!</h1>
+        </div>
+
+    </section>
 </div>
