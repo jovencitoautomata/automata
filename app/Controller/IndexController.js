@@ -133,21 +133,26 @@ app.controller('IndexController', function($scope, VisDataSet, $timeout, $mdSide
 
     $scope.$watch('estados', function(data) {
         var nodosGraf = [];
+        var selecciono=false;
         $scope.cadenas = [];
         angular.forEach($scope.estados, function(value, key) {
-            if(value.name==$scope.ini.name)
+            if(value.name==$scope.ini.name){
                 nodos.update({
                     id: value.name,
                     label: value.name,
                     shape:'box'
                 });
+                selecciono=true;
+            }
             else
                  nodos.update({
                     id: value.name,
                     label: value.name
                 });
         });
-
+        if($scope.estados.length!=0&&!selecciono)
+            $scope.ini.name=$scope.estados[0].name;
+            
         var antiguos = nodos.getIds();
         var auxiliar = [];
         for (var i = 0; i < antiguos.length; i++) {
