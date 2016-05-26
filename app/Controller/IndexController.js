@@ -9,6 +9,7 @@ app.controller('IndexController', function($scope, VisDataSet, $timeout, $mdSide
     $scope.tra = [];
     $scope.cadenas = [];
     $scope.ini = [];
+    $scope.errort=false;
 
     $scope.toggleSidenav = function(menuId) {
         $mdSidenav(menuId).toggle();
@@ -34,6 +35,7 @@ app.controller('IndexController', function($scope, VisDataSet, $timeout, $mdSide
         var aceptacion;
         var existe = false;
         $scope.errortext = "";
+        console.log($scope.simbolos);
         if (!$scope.addMe) {
             return;
         }
@@ -42,17 +44,44 @@ app.controller('IndexController', function($scope, VisDataSet, $timeout, $mdSide
                 return existe = true;
             }
         });
-        if (!existe) {
-            aceptacion = resultadoCadena($scope.addMe);
-            $scope.cadenas.push({
-                cadena: $scope.addMe,
-                aceptacion: aceptacion
-            });
-            $scope.addMe = null;
-        } else {
-            $scope.errortext = "La cadena ya existe en la lista";
+        if(cadenaValida($scope.addMe)){
+            if (!existe) {
+                aceptacion = resultadoCadena($scope.addMe);            
+                $scope.cadenas.push({
+                    cadena: $scope.addMe,
+                    aceptacion: aceptacion
+                });
+                $scope.addMe = null;
+            } else {
+                $scope.errort=true;
+                $scope.errortext = "La cadena ya existe en la lista";
+            }
+        }else{
+            $scope.errort=true;
+            $scope.errortext = "La cadena no es válida";
         }
     }
+
+    function cadenaValida(addMe){
+        var letras = addMe.split("");
+        var existe=false;        
+        for (var $i = 0; $i < letras.length; $i++) {
+            for (var $j = 0; $j < $scope.simbolos.length; $j++) {              
+                if(letras[$i]==$scope.simbolos[$j]['name']){
+                    console.log(letras[$i]);
+                    existe=true;
+                    break;
+                }else{
+                    existe=false;
+                }
+            }
+            if(!existe){
+                break;
+            }
+        }
+        return existe;
+    }
+    
 
     $scope.removeItem = function(x) {
         $scope.errortext = "";
@@ -415,5 +444,20 @@ app.controller('IndexController', function($scope, VisDataSet, $timeout, $mdSide
 
     $scope.removeNCadenas = function() {
         $scope.cadenas = [];
+    }
+
+
+    $scope.Reiniciar = function() {
+        $scope.simbolos = [];
+        $scope.estados = [];
+        $scope.info = [];
+        $scope.onKeyPressResult = "";
+        $scope.count;
+        $scope.cadena = "";
+        $scope.aceptacion;
+        $scope.tra = [];
+        $scope.cadenas = [];
+        $scope.ini = [];
+        $scope.errort=false;
     }
 });

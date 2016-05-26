@@ -139,4 +139,16 @@ main-fab {
 .md-chip-remove-container md-icon:hover,
 .md-chip-remove-container md-icon.vegetablechip:focus {
     background: rgba(255, 0, 0, 0.8);
- }
+}
+
+
+button.md-fab.md-primary.md-button.md-ink-ripple.vaciar{
+    z-index: 1000000000;
+    position: fixed;
+    top: 30%;
+    right: 0px;
+}
+
+
+
+     
