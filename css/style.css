@@ -144,10 +144,27 @@ main-fab {
 
 button.md-fab.md-primary.md-button.md-ink-ripple.vaciar{
     z-index: 1000000000;
-    position: fixed;
-    top: 30%;
-    right: 0px;
+    background-color:white; 
 }
+
+.animate-show {
+  line-height: 20px;
+  opacity: 1;
+  padding: 10px;
+  background: white;
+}
+
+.animate-show.ng-hide-add, .animate-show.ng-hide-remove {
+  transition: all linear 0.5s;
+}
+
+.animate-show.ng-hide {
+  line-height: 0;
+  opacity: 0;
+  padding: 0 10px;
+}
+
+
 
 
 

@@ -22,6 +22,7 @@ angular.module('ngMdTables', ['ngMaterial']).directive('ngMdTable', function($fi
     return {
       restrict: 'E',
       scope: {
+        reiniciando:'&reiniciando',
         tableName: '@tableName',
         ini:'=ini',
         data: '=data',

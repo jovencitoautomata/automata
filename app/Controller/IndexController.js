@@ -58,7 +58,7 @@ app.controller('IndexController', function($scope, VisDataSet, $timeout, $mdSide
             }
         }else{
             $scope.errort=true;
-            $scope.errortext = "La cadena no es válida";
+            $scope.errortext = "La cadena no pertenece al alfabeto";
         }
     }
 
@@ -116,6 +116,7 @@ app.controller('IndexController', function($scope, VisDataSet, $timeout, $mdSide
 
     $scope.$watch('ini.name', function(data) {
         var otros=nodos.getIds();
+        $scope.cadenas = [];
         angular.forEach(otros, function(value, key){
             nodos.update({
                 id: value,
@@ -132,6 +133,7 @@ app.controller('IndexController', function($scope, VisDataSet, $timeout, $mdSide
 
     $scope.$watch('estados', function(data) {
         var nodosGraf = [];
+        $scope.cadenas = [];
         angular.forEach($scope.estados, function(value, key) {
             if(value.name==$scope.ini.name)
                 nodos.update({
@@ -173,6 +175,7 @@ app.controller('IndexController', function($scope, VisDataSet, $timeout, $mdSide
             $scope.ini.name = $scope.tra[0].estado;
         var aris = [];
         var transiciones = [];
+        $scope.cadenas = [];
         var counttrue;
         angular.forEach($scope.tra, function(value, key) {
 
@@ -447,7 +450,7 @@ app.controller('IndexController', function($scope, VisDataSet, $timeout, $mdSide
     }
 
 
-    $scope.Reiniciar = function() {
+    $scope.reiniciar = function() {
         $scope.simbolos = [];
         $scope.estados = [];
         $scope.info = [];

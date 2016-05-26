@@ -1,12 +1,3 @@
-
-<md-button class="md-fab md-primary vaciar" aria-label="Reiniciar"  ng-click="Reiniciar()">
-    <md-icon>
-        <svg style="width:24px;height:24px" viewBox="0 0 24 24">
-            <path  fill="#FFFFFF" d="M21.03,3L18,20.31C17.83,21.27 17,22 16,22H8C7,22 6.17,21.27 6,20.31L2.97,3H21.03M5.36,5L8,20H16L18.64,5H5.36M9,18V14H13V18H9M13,13.18L9.82,10L13,6.82L16.18,10L13,13.18Z" />
-        </svg>
-    </md-icon>
-</md-button> 
-
 <div layout="row" flex="100" ng-cloak>
     <md-toolbar class="md-warn">
         <div class="md-toolbar-tools">
@@ -15,9 +6,38 @@
     </md-toolbar>
 </div>
 <div flex="90" class="content-body"> 
+<div layout="row" class="ng-scope layout-row">
+
+            <div layout="row" layout-padding="" layout-wrap="" layout-fill="" style="padding-bottom: 32px;" class="whiteframedemoDirectiveAttributeUsage" >                
+                <div class="padded" md-whiteframe="6" flex-sm="45" flex-gt-sm="35" flex-gt-md="100" layout="" layout-align="center center">
+                    <div class="box-automata">                        
+                            <div style="margin-bottom: 6px;">
+                                <md-chips class="custom-chips" id="chipsimbolo" ng-keyUp="estan($event)" ng-model="simbolos" ng-init="count=0" md-transform-chip="newSimbolo($chip,count)" placeholder="Ingrese el Alfabeto">
+                                    <md-chip-template>
+                                    <span>
+                                      <strong>{{$chip.name}}</strong>
+                                    </span>
+                                    </md-chip-template>
+                                </md-chips>
+                                <md-chips class="custom-chips" id="chipestados" ng-model="estados" md-transform-chip="newEstado($chip)" placeholder="Ingrese Estados">
+                                    <md-chip-template>
+                                    <span>
+                                      <strong>{{$chip.name}}</strong>
+                                    </span>
+                                    </md-chip-template>
+                                </md-chips>
+                            </div>
+                        <ng-md-table table-name="Tabla de transiciones" ini="ini" reiniciando="reiniciar()" data="estados" trans="tra" columns="simbolos" show-search="false" page-size="10" is-loaded="loaded">
+                        </ng-md-table>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+        <md-divider></md-divider>
     <md-content layout-padding>
    <!--Mas nuevo-->
-        <div layout="column"  ng-show="tra.length != 0" class=" md-whiteframe-6dp"> 
+        <div layout="column"  class=" md-whiteframe-6dp"> 
         <md-toolbar layout="row">
                     <div class="md-toolbar-tools">    
                     <div>                
@@ -38,7 +58,7 @@
                     </div>
                     <div style="overflow-y:auto">
                     <md-list>
-                        <md-list-item ng-repeat="cadena in cadenas" ng-click="null">
+                        <md-list-item class="animate-show" ng-repeat="cadena in cadenas" ng-click="null">
                             <div class="md-list-item-text">
                                 <div layout="row">
                                     <h4>{{ cadena.cadena }}</h4>                        
@@ -51,7 +71,7 @@
                     </md-list>
                     </div>
                     <md-divider></md-divider>
-                        <div class="md-list-item-text">
+                        <div class="md-list-item-text animate-show" ng-show="tra.length != 0" style="margin-left: 10px;">
                             <div layout="row">
                                 <div layout="column">
                                     <md-input-container class="md-block flex-gt-sm" flex-gt-sm="100" >
@@ -66,12 +86,12 @@
                                 </div> 
                                 <div layout="column" class="layout-column">
                                     <md-input-container class="md-block flex-gt-sm flex-gt-sm-100" flex-gt-sm="100">  
-                                    <md-button  class="md-icon-button md-accent"><ng-md-icon icon="delete" style="fill: purple" aria-label="Eliminar" class="md-secondary" title="Eliminar todas las cadenas" ng-click="Reiniciar()">x</ng-md-icon> </md-button>     
+                                    <md-button  class="md-icon-button md-accent"><ng-md-icon icon="delete" style="fill: purple" aria-label="Eliminar" class="md-secondary" title="Eliminar todas las cadenas" ng-click="removeNCadenas()">x</ng-md-icon> </md-button>     
                                               
                                     </md-input-container>
                                 </div>   
                             </div>  
-                            <p ng-if="errort" style="color: red;margin-top: -17px;" class="ng-scope">{{errortext}}</p>  
+                            <p ng-show="errort" style="color: red;margin-top: -17px;" class="ng-scope animate-show">{{errortext}}</p>  
                         </div>
                 </md-sidenav>
           
@@ -83,36 +103,17 @@
             </div>
         </div>
         <!--fin mas nuevo-->  
-    <md-divider></md-divider>
-        <div layout="row" class="ng-scope layout-row">
-
-            <div layout="row" layout-padding="" layout-wrap="" layout-fill="" style="padding-bottom: 32px;" class="whiteframedemoDirectiveAttributeUsage" >                
-                <div class="padded" md-whiteframe="6" flex-sm="45" flex-gt-sm="35" flex-gt-md="100" layout="" layout-align="center center">
-                    <div class="box-automata">                        
-                            <div style="margin-bottom: 6px;">
-                                <md-chips class="custom-chips" id="chipsimbolo" ng-keyUp="estan($event)" ng-model="simbolos" ng-init="count=0" md-transform-chip="newSimbolo($chip,count)" placeholder="Símbolos de entrada">
-                                    <md-chip-template>
-                                    <span>
-                                      <strong>{{$chip.name}}</strong>
-                                    </span>
-                                    </md-chip-template>
-                                </md-chips>
-                                <md-chips class="custom-chips" id="chipestados" ng-model="estados" md-transform-chip="newEstado($chip)" placeholder="Estados de transición">
-                                    <md-chip-template>
-                                    <span>
-                                      <strong>{{$chip.name}}</strong>
-                                    </span>
-                                    </md-chip-template>
-                                </md-chips>
-                            </div>
-                        <ng-md-table table-name="Tabla de transiciones" ini="ini" data="estados" trans="tra" columns="simbolos" show-search="false" page-size="10" is-loaded="loaded">
-                        </ng-md-table>
-
-                    </div>
-                </div>
-            </div>
-        </div>
+    
+        
     </md-content>
+    <md-divider></md-divider>
+    <div layout="row" layout-align="center end" style="background: #29AAF6" flex>
+        <div class="md-toolbar-tools"> 
+          <p>Created by Elier Yair Arango, Julian Stiven Rivera ©2016.</p>
+          <p>Todos los derechos reservados.</p>
+        
+        </div>
+    </div>
 <md-sidenav class="md-sidenav-right md-whiteframe-z2" md-component-id="nodos">
 
   <md-toolbar class="md-theme-light">
@@ -135,8 +136,8 @@
   </md-content>
 
 </md-sidenav>
+
 </div>
 
-<div id="mynetwork"></div>
 
 
